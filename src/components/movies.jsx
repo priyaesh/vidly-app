@@ -6,6 +6,7 @@ import Pagination from "./common/pagination";
 class Movies extends React.Component {
   state = {
     movies: getMovies(),
+    currentPage: 1,
     pageSize: 4,
   };
   handleDelete = (movie) => {
@@ -21,11 +22,12 @@ class Movies extends React.Component {
     movies[index].liked = !movies[index].liked;
     this.setState({ movies });
   };
-  handlePageChange = () => {
-    console.log("Onclick Page Change");
+  handlePageChange = (page) => {
+    this.setState({ currentPage: page });
   };
   render() {
     const { length: count } = this.state.movies;
+    const { pageSize, currentPage } = this.state;
     if (count === 0) return <p>There are no movies in the database.</p>;
     return (
       <>
@@ -68,7 +70,8 @@ class Movies extends React.Component {
           </table>
           <Pagination
             itemCount={count}
-            pageSize={10}
+            pageSize={pageSize}
+            currentPage={currentPage}
             onPageChange={this.handlePageChange}
           />
         </div>
