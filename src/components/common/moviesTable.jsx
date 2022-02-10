@@ -28,7 +28,7 @@ class MoviesTable extends React.Component {
     },
   ];
   render() {
-    const { movies, onDelete, onLike, sortColumn, onSort } = this.props;
+    const { movies, sortColumn, onSort } = this.props;
     return (
       <div>
         <table className="table">
